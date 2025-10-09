@@ -34,7 +34,6 @@ struct FileData {
 };
 
 void get_permissions(unsigned int mode, char *perm) {
-    // Тип файла
     if (IS_DIR(mode)) perm[0] = 'd';
     else if (IS_LNK(mode)) perm[0] = 'l';
     else perm[0] = '-';
@@ -139,7 +138,6 @@ int main(int argc, char *argv[]) {
     int show_all = 0;
     int long_format = 0;
 
-    // Простой парсинг флагов
     for (int i = 1; i < argc; i++) {
         if (argv[i][0] == '-' && strlen(argv[i]) > 1) {
             for (int j = 1; j < strlen(argv[i]); j++) {
