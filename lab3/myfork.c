@@ -1,3 +1,6 @@
+#define _POSIX_C_SOURCE 200809L  
+
+
 #include <stdio.h>
 #include <unistd.h>
 #include <stdlib.h>
@@ -6,15 +9,15 @@
 #include <string.h>
 
 void custom_exit(void) {
-    printf("Process %d ends\n", (int)getpid());
+    printf("process PID=%d ends\n", (int)getpid());
 }
 
-void custom_sigint(int sig) {
-    printf("Process %d got a signal SIGINT\n", (int)getpid());
+void custom_sigint() {
+    printf("process PID=%d got a signal SIGINT\n", (int)getpid());
 }
 
-void custom_sigterm(int sig) {
-    printf("Process %d got a signal SIGTERM\n", (int)getpid());
+void custom_sigterm() {
+    printf("process PID=%d got a signal SIGTERM\n", (int)getpid());
 }
 
 int main() {
@@ -31,7 +34,7 @@ int main() {
     sigemptyset(&sa.sa_mask);
     sigaction(SIGTERM, &sa, NULL);
 
-    printf("start (PID=%d)\n", (int)getpid());
+    printf("start PID=%d\n", (int)getpid());
 
     pid = fork();
 
@@ -40,11 +43,11 @@ int main() {
         exit(1);
     }
     else if (pid == 0) {
-        printf("child (PID=%d), PPID=%d\n", (int)getpid(), (int)getppid());
+        printf("child PID=%d, PPID=%d\n", (int)getpid(), (int)getppid());
         exit(52);
     }
     else {
-        printf("parent's (PID=%d), PPID=%d\n", (int)getpid(), (int)getppid());
+        printf("parent's PID=%d, PPID=%d\n", (int)getpid(), (int)getppid());
         printf("child's PID=%d\n", (int)pid);
         printf("waiting...\n");
         wait(&status);

@@ -1,7 +1,7 @@
 CC=gcc
 CFLAGS=-Wall -Wextra -std=c99
-TARGET=main
-SOURCES=main.c
+TARGET=myfork
+SOURCES=myfork.c
 
 $(TARGET): $(SOURCES)
 	$(CC) $(CFLAGS) -o $(TARGET) $(SOURCES)
