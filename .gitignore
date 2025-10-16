@@ -1,0 +1,6 @@
+*.o
+*.bin
+myfork
+LS
+mycat
+mygrep
