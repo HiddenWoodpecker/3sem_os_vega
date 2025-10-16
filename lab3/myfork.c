@@ -44,17 +44,17 @@ int main() {
     }
     else if (pid == 0) {
         printf("child PID=%d, PPID=%d\n", (int)getpid(), (int)getppid());
+	sleep(3);
         exit(52);
     }
     else {
         printf("parent's PID=%d, PPID=%d\n", (int)getpid(), (int)getppid());
         printf("child's PID=%d\n", (int)pid);
         printf("waiting...\n");
+
         wait(&status);
 
-        if (WIFEXITED(status)) {
-            printf("child exited with %d\n", WEXITSTATUS(status));
-        }
+        printf("child exited with %d\n", (status));
         printf("parent finished\n");
     }
 
