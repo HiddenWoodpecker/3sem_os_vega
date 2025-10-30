@@ -44,7 +44,7 @@ int main() {
     }
     else if (pid == 0) {
         printf("child PID=%d, PPID=%d\n", (int)getpid(), (int)getppid());
-	sleep(3);
+	sleep(10);
         exit(52);
     }
     else {
@@ -54,7 +54,7 @@ int main() {
 
         wait(&status);
 
-        printf("child exited with %d\n", (status));
+        printf("child exited with %d\n", WEXITSTATUS(status));
         printf("parent finished\n");
     }
 
